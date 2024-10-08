@@ -6,7 +6,7 @@ from Config import tabular_q_learning_props
 from tqdm import tqdm
 
 
-env = gym.make('Taxi-v3', render_mode='rgb_array')
+env = gym.make('Taxi-v3')
 
 #Initialize Q-Table. It will be a table with dimension 500 x 6
 q_table = np.zeros((env.observation_space.n, env.action_space.n))
@@ -64,7 +64,7 @@ new_env = gym.make('Taxi-v3', render_mode="human")
 epsilon_eval = 0.3
 
 
-for episode in range(3):
+for episode in range(10):
     print(f"Episode number: {episode + 1}")
     state, info = new_env.reset()
 
