@@ -65,8 +65,6 @@ print(success_table)
 env.close()
 
 new_env = gym.make('Taxi-v3', render_mode="human")
-epsilon_eval = 0.3
-
 
 for episode in range(10):
     print(f"Episode number: {episode + 1}")
@@ -76,12 +74,9 @@ for episode in range(10):
         action_mask = info.get('action_mask')
         valid_actions = np.where(action_mask == 1)[0]
 
-        if np.random.uniform(0, 1) < epsilon_eval:
-            action = np.random.choice(valid_actions) 
-        else:
-            q_values_valid_actions = q_table[state, valid_actions]
-            action = valid_actions[np.argmax(q_values_valid_actions)]
-        
+        q_values_valid_actions = q_table[state, valid_actions]
+        action = valid_actions[np.argmax(q_values_valid_actions)]
+                    
         next_state, reward, terminated, truncated, new_info = new_env.step(action)   
 
         state = next_state
