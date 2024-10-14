@@ -70,7 +70,7 @@ for episode in range(10):
     print(f"Episode number: {episode + 1}")
     state, info = new_env.reset()
 
-    for _ in tqdm(range(300)):
+    for _ in tqdm(range(200)):
         action_mask = info.get('action_mask')
         valid_actions = np.where(action_mask == 1)[0]
 
