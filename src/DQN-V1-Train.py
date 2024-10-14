@@ -120,7 +120,7 @@ for episode in progress_bar:
     if len(memory) >= deep_q_network_props.rl.train_start:
         epsilon = minimum_epsilon + (deep_q_network_props.rl.exploration_rate - minimum_epsilon) * np.exp(-episode / epsilon_decay)        
 
-    for current_step in range(0, deep_q_network_props.env.max_steps_per_episode):
+    for current_step in range(0, 200):
         action = choose_action(model, state, epsilon)
 
         next_state, reward, done, truncated, _ = env.step(action)
