@@ -106,6 +106,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=deep_q_network_props.network
 loss_fn = torch.nn.functional.smooth_l1_loss
 
 target_model = RLModel(state_size, action_size).to(torch.device('cpu'))
+target_model.load_state_dict(model.state_dict())
 target_model.eval()
 
 
